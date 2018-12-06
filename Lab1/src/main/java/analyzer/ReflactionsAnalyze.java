@@ -37,7 +37,9 @@ public class ReflactionsAnalyze {
                         int[] array = (int[]) fillMethod.invoke(Fill.class, n);
                         Method sortMethod = null;
                         try {
-                            sortMethod = cl.getMethod("sort");
+                            Class[] cArg = new Class[1];
+                            cArg[0] = int[].class;
+                            sortMethod = cl.getMethod("sort",cArg );
                             long time = countTime(sortMethod, cl, array);
                             System.out.println("FillType: " + fillMethod.getName() + "\tSortType: " + cl.getName() + "\t" + time);
                         } catch (NoSuchMethodException e) {
