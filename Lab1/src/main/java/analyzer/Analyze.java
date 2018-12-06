@@ -46,59 +46,38 @@ public class Analyze{
     public long analyze(int[] array, SortType st){
         AbstractSorter s;
 
-        long countTime;
-
         switch(st){
             case BubbleSortFloatUp:
                 s = new BubbleSortFloatUp();
-                countTime = System.nanoTime();
-                s.sort(array);
-                countTime = System.nanoTime() - countTime;
-                break;
+                return countTime(s, array);
             case BubbleSortSink:
                 s = new BubbleSortSink();
-                countTime = System.nanoTime();
-                s.sort(array);
-                countTime = System.nanoTime() - countTime;
-                break;
+                return countTime(s, array);
             case BuiltInSort:
                 s = new BuiltInSort();
-                countTime = System.nanoTime();
-                s.sort(array);
-                countTime = System.nanoTime() - countTime;
-                break;
+                return countTime(s, array);
             case QuickSort:
                 s = new QuickSort();
-                countTime = System.nanoTime();
-                s.sort(array);
-                countTime = System.nanoTime() - countTime;
-                break;
+                return countTime(s, array);
             case MergeWithBubbleSortFloatUp:
                 s = new MergeWithBubbleSortFloatUp();
-                countTime = System.nanoTime();
-                s.sort(array);
-                countTime = System.nanoTime() - countTime;
-                break;
+                return countTime(s, array);
             case MergeWithBubbleSortSink:
                 s = new MergeWithBubbleSortSink();
-                countTime = System.nanoTime();
-                s.sort(array);
-                countTime = System.nanoTime() - countTime;
-                break;
+                return countTime(s, array);
             case MergeWithBuiltInSort:
                 s = new MergeWithBuiltInSort();
-                countTime = System.nanoTime();
-                s.sort(array);
-                countTime = System.nanoTime() - countTime;
-                break;
+                return countTime(s, array);
             default:
                 s = new MergeWithQuickSort();
-                countTime = System.nanoTime();
-                s.sort(array);
-                countTime = System.nanoTime() - countTime;
-                break;
+                return countTime(s, array);
         }
+    }
 
+    private long countTime(AbstractSorter s, int[] array){
+        long countTime = System.nanoTime();
+        s.sort(array);
+        countTime = System.nanoTime() - countTime;
         return countTime;
     }
 }
