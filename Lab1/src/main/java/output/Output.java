@@ -3,6 +3,7 @@ package output;
 import analyzer.Analyze;
 import analyzer.Analyze.FillType;
 import analyzer.Analyze.SortType;
+import fillers.Fill;
 
 
 public class Output {
@@ -13,6 +14,7 @@ public class Output {
                 Analyze a = new Analyze();
                 long time = a.analyze(a.makeArray(ft, arraySize), st);
                 System.out.println("FillType: " + ft + "\tSortType: " + st + "\t" + time);
+//                Fill.class.
             }
         }
     }
