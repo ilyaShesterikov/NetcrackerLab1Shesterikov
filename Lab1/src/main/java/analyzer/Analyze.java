@@ -2,9 +2,16 @@ package analyzer;
 import fillers.Fill;
 import sorters.*;
 
-
+/**
+ * Class analyzer to call all fillers and sort methods and count time of sorting.
+ * @author Shesterikov
+ *
+ */
 public class Analyze{
 
+    /**
+     *  Sorters that can be used
+     */
     public enum SortType{
         BubbleSortFloatUp,
         BubbleSortSink,
@@ -16,12 +23,38 @@ public class Analyze{
         MergeWithQuickSort,
     }
 
+    /**
+     *  Fillers that can be used
+     */
     public enum FillType{
+        /**
+         *  Ascending order
+         */
         Asc,
+        /**
+         *  Descending order
+         */
         Desc,
+        /**
+         *  Ascending order with random element in the end
+         */
         AscX,
+        /**
+         *  Random order
+         */
         R
     }
+
+    /**
+     * Generates array to sort.
+     * @param ft enum type of filling {@link FillType}
+     * @param n size of array
+     * @return sorted array of ints
+     * @see fillers.Fill#makeSortedArrayAsc
+     * @see fillers.Fill#makeSortedArrayDesc
+     * @see fillers.Fill#makeSortedArrayAscX
+     * @see fillers.Fill#makeArray
+     */
     public int[] makeArray( FillType ft, int n){
         int[] array;
         Fill f = new Fill();
@@ -42,6 +75,22 @@ public class Analyze{
         }
         return array;
     }
+
+    /**
+     * Calls sorting method for passed array
+     * Sorts the specified array into ascending numerical order.
+     * @param array array to be sorted
+     * @param st enum type of sorting {@link SortType}
+     * @return time of sorting in nanoseconds
+     * @see sorters.BubbleSortFloatUp
+     * @see sorters.BubbleSortSink
+     * @see sorters.BuiltInSort
+     * @see sorters.QuickSort
+     * @see sorters.MergeWithBubbleSortFloatUp
+     * @see sorters.MergeWithBubbleSortSink
+     * @see sorters.MergeWithBuiltInSort
+     * @see sorters.MergeWithQuickSort
+     */
 
     public long analyze(int[] array, SortType st){
         AbstractSorter s;
@@ -74,6 +123,12 @@ public class Analyze{
         }
     }
 
+    /**
+     * Counts time of sorting
+     * @param s sorter
+     * @param array array to be sorted
+     * @return time of sorting in nanoseconds
+     */
     private long countTime(AbstractSorter s, int[] array){
         long countTime = System.nanoTime();
         s.sort(array);
