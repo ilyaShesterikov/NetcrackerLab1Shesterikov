@@ -10,8 +10,8 @@ import fillers.Fill;
  * @author Shesterikov
  */
 public class Output {
-    public static void main(String[] args) {
-        int arraySize = 1000;
+//    public static void main(String[] args) {
+//        int arraySize = 1000;
 //        for(FillType ft: FillType.values()){
 //            for (SortType st : SortType.values()) {
 //                Analyze a = new Analyze();
@@ -20,5 +20,5 @@ public class Output {
 //
 //             }
 //        }
-    }
+//    }
 }

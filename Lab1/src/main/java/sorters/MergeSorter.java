@@ -10,7 +10,7 @@ package sorters;
  *     </ul>
  * @author Shesterikov
  */
-public abstract class MergeSorter extends AbstractSorter{
+abstract class MergeSorter extends AbstractSorter{
 
     /**
      * Sort the specified part of array

@@ -49,7 +49,7 @@ public class Analyze{
      * Generates array to sort.
      * @param ft enum type of filling {@link FillType}
      * @param n size of array
-     * @return sorted array of ints
+     * @return generated array of ints
      * @see fillers.Fill#makeSortedArrayAsc
      * @see fillers.Fill#makeSortedArrayDesc
      * @see fillers.Fill#makeSortedArrayAscX

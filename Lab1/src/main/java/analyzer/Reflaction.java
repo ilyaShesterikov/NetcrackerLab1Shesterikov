@@ -38,7 +38,7 @@ public class Reflaction {
 
         String line = null;
         while ((line = dis.readLine()) != null) {
-            if(line.endsWith(".class")) {
+            if(line.endsWith(".class") && !line.contains("Test")) {
                 Class c = Class.forName(dottedPackage + "." + line.substring(0, line.lastIndexOf('.')));
                 if( !Modifier.isAbstract( c.getModifiers() )) {
                     classes.add(c);

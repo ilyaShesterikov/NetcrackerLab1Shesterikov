@@ -6,7 +6,7 @@ package sorters;
  * @author Shesterikov
  * @see <a href="https://en.wikipedia.org/wiki/Bubble_sort">Wikipedia: Bubble sort</a>
  */
-public abstract class BubbleSorter extends AbstractSorter {
+abstract class BubbleSorter extends AbstractSorter {
 
     /**
      * Checks if two elements stand in ascending order. Otherwise, swaps them.

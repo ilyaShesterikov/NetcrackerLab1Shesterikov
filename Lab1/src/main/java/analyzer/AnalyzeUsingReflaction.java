@@ -15,26 +15,19 @@ import java.util.List;
 public class AnalyzeUsingReflaction {
 
     /**
+     * Calls sorting method for passed array
      *
-     * @param n size of array
+     * @param array array to be sorted
      * @param sorterClass sorter class {@link sorters}
-     * @param fillMethod fill method {@link fillers.Fill}
-     * @return
+     * @return time of sorting in nanoseconds
      */
-    public long analyze (int n, Class sorterClass, Method fillMethod)  {
-        int[] array;
+    public long analyze (int[] array, Class sorterClass)  {
         long time = 0;
         try {
-            array = (int[]) fillMethod.invoke(Fill.class, n);
-            Method sortMethod = null;
-            sortMethod = sorterClass.getMethod("sort", int[].class );
+            Method sortMethod = sorterClass.getMethod("sort", int[].class );
             time = countTime(sortMethod, sorterClass, array);
-            System.out.println("FillType: " + fillMethod.getName()
-                    + "\tSortType: " + sorterClass.getName() + "\t" + time);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
+//            System.out.println("FillType: " + fillMethod.getName()
+//                    + "\tSortType: " + sorterClass.getName() + "\t" + time);
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
@@ -52,7 +45,7 @@ public class AnalyzeUsingReflaction {
         long countTime = System.nanoTime();
         try {
             m.invoke(cl.newInstance(), array);
-            for(int i : array) System.out.print(" " +i);
+            //for(int i : array) System.out.print(" " +i);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
@@ -62,5 +55,27 @@ public class AnalyzeUsingReflaction {
         }
         countTime = System.nanoTime() - countTime;
         return countTime;
+    }
+
+    /**
+     * Generates array to sort
+     *
+     * @param fillMethod fill method {@link fillers.Fill}
+     * @param n size of array
+     * @return generated array of ints
+     */
+    public int[] makeArray(Method fillMethod, int n){
+
+        int[] array  = null;
+        try {
+            array = (int[]) fillMethod.invoke(Fill.class, n);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        ;
+
+        return array;
     }
 }
