@@ -10,7 +10,7 @@ package sorters;
  *     </ul>
  * @author Shesterikov
  */
-abstract class MergeSorter extends AbstractSorter{
+ class MergeSorter extends AbstractSorter{
 
     /**
      * Sort the specified part of array
@@ -70,5 +70,52 @@ abstract class MergeSorter extends AbstractSorter{
             mergeSort(s, arr, m+1, r);
             merge(s, arr, l, m, r);
         }
+    }
+
+    /**
+     * Takes an array and merge sorts it in parallel if there
+     * are multiple threads
+     *
+     * @param arr is the array to sort
+     * @param from is the first value to sort
+     * @param to is the last value to sort
+     * @param availableThreads is how many threads there are to utilize
+     */
+    public void parallelMergeSort(final AbstractSorter s, final int arr[], final int from, final int to, final int availableThreads){
+        if (to - from > 0){
+            if (availableThreads <=1) {
+                mergeSort(s, arr, from, to);
+            }
+            else {
+                final int middle = to/2;
+
+                Thread firstHalf = new Thread(){
+                    public void run(){
+                         parallelMergeSort(s, arr, from, middle, availableThreads - 1);
+                    }
+                };
+                Thread secondHalf = new Thread(){
+                    public void run(){
+                          parallelMergeSort(s, arr, middle + 1, to, availableThreads - 1);
+                    }
+                };
+
+                firstHalf.start();
+                secondHalf.start();
+
+                try {
+                    firstHalf.join();
+                    secondHalf.join();
+                } catch (InterruptedException ie) {
+                    ie.printStackTrace();
+                }
+
+                merge(s, arr, from, middle, to);
+            }
+        }
+    }
+
+    public void sort(int[] array) {
+
     }
 }

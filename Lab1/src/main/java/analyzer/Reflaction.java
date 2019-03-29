@@ -40,7 +40,7 @@ public class Reflaction {
         while ((line = dis.readLine()) != null) {
             if(line.endsWith(".class") && !line.contains("Test")) {
                 Class c = Class.forName(dottedPackage + "." + line.substring(0, line.lastIndexOf('.')));
-                if( !Modifier.isAbstract( c.getModifiers() )) {
+                if( !Modifier.isAbstract( c.getModifiers() ) && Modifier.isPublic( c.getModifiers() )) {
                     classes.add(c);
                 }
             }

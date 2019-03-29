@@ -5,7 +5,7 @@ package sorters;
  * @author Shesterikov
  * @see <a href="https://en.wikipedia.org/wiki/Bubble_sort">Wikipedia: Bubble sort</a>
  */
-public class MergeWithBubbleSortFloatUp extends MergeSorter {
+public class MergeWithBubbleSortFloatUp extends MergeSorter{
     /**
      * Uses MergeSorter {@link MergeSorter} to sort the specified array with BubbleSortFloatUp {@link BubbleSortFloatUp}
      * method in ascending order.
@@ -13,6 +13,7 @@ public class MergeWithBubbleSortFloatUp extends MergeSorter {
      */
     public void sort(int[] array) {
         BubbleSortFloatUp s = new BubbleSortFloatUp();
-        mergeSort(s, array, 0, array.length - 1);
+        MergeSorter mergeSorter = new MergeSorter();
+        mergeSorter.parallelMergeSort(s, array, 0, array.length - 1, Runtime.getRuntime().availableProcessors());
     }
 }

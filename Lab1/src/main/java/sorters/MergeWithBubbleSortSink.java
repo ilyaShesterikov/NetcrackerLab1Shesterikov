@@ -13,6 +13,8 @@ public class MergeWithBubbleSortSink extends MergeSorter {
      */
     public void sort(int[] array) {
         BubbleSortSink s = new BubbleSortSink();
-        mergeSort(s, array, 0, array.length - 1);
+        MergeSorter mergeSorter = new MergeSorter();
+        mergeSorter.parallelMergeSort(s, array, 0, array.length - 1, Runtime.getRuntime().availableProcessors());
+        //mergeSort(s, array, 0, array.length - 1);
     }
 }
