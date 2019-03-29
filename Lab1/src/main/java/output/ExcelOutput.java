@@ -17,6 +17,10 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.List;
 
+/**
+ * Class to create  all analyzed information about sorting arrays
+ * @author Shesterikov
+ */
 public class ExcelOutput {
     public static void main(String[] args) {
         XSSFWorkbook workbook = new XSSFWorkbook();
@@ -56,7 +60,6 @@ public class ExcelOutput {
             out = new FileOutputStream(new File("Writesheet.xlsx"));
             workbook.write(out);
             out.close();
-            System.out.println("sdf");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
